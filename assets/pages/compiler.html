@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Online Code Compiler</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: grey;
+        margin: 0;
+      }
+
+      button {
+        background-color: #007bff;
+        color: white;
+        padding: 12px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 20px;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      #d1 {
+        border: 2px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80%;
+        height: 200px;
+        background: #444;
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+        overflow: auto;
+        padding: 10px;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <button onclick="compiler()">Online Run Compiler</button>
+    <div id="d1"></div>
+
+    <script>
+      function compiler() {
+        let tag = prompt("Enter the tag you want to create (e.g., p, h1, div)");
+        let css = prompt(
+          "Enter your CSS styles (e.g., color: red; font-size: 20px;)"
+        );
+        let content = prompt("Enter the content inside the tag");
+
+        if (!tag || !content) {
+          alert("Tag and content cannot be empty!");
+          return;
+        }
+
+        let tagElement = document.createElement(tag);
+        tagElement.innerHTML = content;
+        tagElement.style.cssText = css;
+
+        document.getElementById("d1").appendChild(tagElement);
+      }
+    </script>
+  </body>
+</html>

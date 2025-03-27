@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #333;
+      }
+
+      .calculator {
+        width: 300px;
+        padding: 20px;
+        background: #222;
+        color: white;
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      h2 {
+        margin-bottom: 15px;
+      }
+
+      input {
+        width: 80%;
+        padding: 10px;
+        margin: 10px 0;
+        font-size: 18px;
+        text-align: center;
+        border: none;
+        border-radius: 5px;
+      }
+
+      .btn-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      button {
+        flex: 1 1 45%;
+        padding: 10px;
+        margin: 5px;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .btn-add {
+        background: #28a745;
+        color: white;
+      }
+      .btn-sub {
+        background: #dc3545;
+        color: white;
+      }
+      .btn-mul {
+        background: #ffc107;
+        color: black;
+      }
+      .btn-div {
+        background: #17a2b8;
+        color: white;
+      }
+      .btn-clear {
+        background: #6c757d;
+        color: white;
+        width: 100%;
+      }
+
+      #result {
+        margin-top: 15px;
+        font-size: 18px;
+        font-weight: bold;
+        color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator">
+      <h2>Basic Calculator</h2>
+      <input type="number" id="num1" placeholder="Enter first number" />
+      <input type="number" id="num2" placeholder="Enter second number" />
+
+      <div class="btn-container">
+        <button class="btn-add" onclick="calculate('add')">Add</button>
+        <button class="btn-sub" onclick="calculate('sub')">Subtract</button>
+        <button class="btn-mul" onclick="calculate('mul')">Multiply</button>
+        <button class="btn-div" onclick="calculate('div')">Divide</button>
+      </div>
+
+      <button class="btn-clear" onclick="clearResult()">Clear</button>
+
+      <div id="result"></div>
+    </div>
+
+    <script>
+      function calculate(operation) {
+        let num1 = parseFloat(document.getElementById("num1").value);
+        let num2 = parseFloat(document.getElementById("num2").value);
+        let resultText = "";
+
+        if (isNaN(num1) || isNaN(num2)) {
+          resultText = "Please enter valid numbers!";
+        } else {
+          switch (operation) {
+            case "add":
+              resultText = `Addition: ${num1} + ${num2} = ${num1 + num2}`;
+              break;
+            case "sub":
+              resultText = `Subtraction: ${num1} - ${num2} = ${num1 - num2}`;
+              break;
+            case "mul":
+              resultText = `Multiplication: ${num1} × ${num2} = ${num1 * num2}`;
+              break;
+            case "div":
+              resultText =
+                num2 !== 0
+                  ? `Division: ${num1} ÷ ${num2} = ${(num1 / num2).toFixed(2)}`
+                  : "Cannot divide by zero!";
+              break;
+          }
+        }
+
+        document.getElementById("result").innerHTML = resultText;
+      }
+
+      function clearResult() {
+        document.getElementById("num1").value = "";
+        document.getElementById("num2").value = "";
+        document.getElementById("result").innerHTML = "";
+      }
+    </script>
+  </body>
+</html>
